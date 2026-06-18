@@ -1,0 +1,107 @@
+ Mobile App — OTP Login
+
+Prompt: "Test OTP login on mobile."
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| ID           | Decsription                                      | TYpe                   | Priority | Expected Result                                  |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_001   | Login with valid mobile number and valid OTP     | Positive / Functional  | High     | User is logged in successfully                   |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_002   | Enter invalid mobile number format               | Negative / Validation  | High     | System shows valid mobile number error           |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_003   | Request OTP for unregistered mobile number       | Negative / Functional  | High     | System shows user not registered message         |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_004   | Enter incorrect OTP                              | Negative / Validation  | Critical | Login is blocked with invalid OTP message        |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_005   | Enter expired OTP                                | Negative / Validation  | Critical | Login is blocked with OTP expired message        |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_006   | Leave OTP field blank                            | Negative / Validation  | High     | System shows OTP required message                |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_007   | Enter OTP with less/more than required digits    | Negative / Validation  | High     | System shows invalid OTP length message          |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_008   | Use same OTP twice after successful login        | Security               | Critical | Reused OTP is rejected                           |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_009   | Request OTP multiple times quickly               | Security / Rate Limit  | Critical | System limits OTP requests and shows wait message|
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_010   | Try brute force by entering multiple wrong OTPs  | Security               | Critical | Account/session is temporarily blocked           |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_011   | Tap resend OTP after allowed wait time           | Positive / Functional  | Medium   | New OTP is generated and old OTP becomes invalid |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_012   | Login on Android mobile browser                  | Compatibility          | Medium   | OTP login works correctly on Android             |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_013   | Login on iPhone Safari                           | Compatibility          | Medium   | OTP login works correctly on iPhone Safari       |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_014   | Login with slow mobile network                   | Performance            | Medium   | OTP screen handles delay without crash           |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+| TC_OTP_015   | Close app/browser after OTP request and reopen   | Functional             | Medium   | User can continue or request new OTP properly    |
++--------------+--------------------------------------------------+------------------------+----------+--------------------------------------------------+
+
+
+
+
+
+New Prompt
+
+Context
+
+Act as a senior QA Engineer and write testcases for validating a shopping cart 
+[STRICT] : Validate 10 digits should be there for Mobile number
+[STRICT] : Validate OTP should be 4 digits
+[STRICT]: OTP should be correct
+[STRICT]: OTP should expire in 5 mins
+[MANDATORTY]: Include positive, negative, security, compatibility
+[MANDATORY] :  Generate test cases in tabular format with header- ID|Decsription|Type|Priority|Expected Result
+
+Persona : Act as test lead to review the testcases
+
+Tone: 
+Professional Tone with Clarity
+
+Output : Table with borders
+
+
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| ID          | Decsription                                                 | Type                      | Priority | Expected Result                                             |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_001  | Enter valid 10-digit mobile number and request OTP          | Positive / Functional     | High     | OTP is generated and sent successfully                      |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_002  | Enter valid 10-digit mobile number and correct 4-digit OTP  | Positive / Functional     | Critical | User is logged in successfully                              |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_003  | Enter mobile number with less than 10 digits                | Negative / Validation     | High     | System shows mobile number must be 10 digits message        |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_004  | Enter mobile number with more than 10 digits                | Negative / Validation     | High     | System shows mobile number must be 10 digits message        |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_005  | Enter mobile number with alphabets or special characters    | Negative / Validation     | High     | System accepts only numeric 10-digit mobile number          |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_006  | Leave mobile number field blank                             | Negative / Validation     | High     | System shows mobile number is required message              |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_007  | Enter OTP with exactly 4 digits and correct value           | Positive / Functional     | Critical | OTP is accepted and user login is completed                 |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_008  | Enter OTP with less than 4 digits                           | Negative / Validation     | High     | System shows OTP must be 4 digits message                   |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_009  | Enter OTP with more than 4 digits                           | Negative / Validation     | High     | System shows OTP must be 4 digits message                   |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_010  | Enter incorrect 4-digit OTP                                 | Negative / Validation     | Critical | Login is blocked with incorrect OTP message                 |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_011  | Enter correct OTP within 5 minutes                          | Positive / Time Validity  | Critical | OTP is accepted successfully                                |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_012  | Enter correct OTP after 5 minutes                           | Negative / Time Validity  | Critical | OTP is rejected with OTP expired message                    |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_013  | Request new OTP after previous OTP expires                  | Positive / Functional     | High     | New OTP is generated and previous OTP becomes invalid       |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_014  | Reuse same OTP after successful login                       | Security                  | Critical | Reused OTP is rejected                                      |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_015  | Try multiple incorrect OTP attempts                         | Security                  | Critical | System blocks or limits further attempts temporarily        |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_016  | Request OTP repeatedly in short time                        | Security / Rate Limit     | Critical | System applies resend limit or cooldown                     |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_017  | Intercept and modify OTP verification API request           | Security                  | Critical | Server validates OTP and rejects tampered request           |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_018  | Validate OTP login flow on Chrome mobile browser            | Compatibility             | Medium   | OTP login works correctly on Chrome mobile                  |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_019  | Validate OTP login flow on Android mobile browser           | Compatibility             | Medium   | OTP login works correctly on Android browser                |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+| TC_OTP_020  | Validate OTP login flow on iPhone Safari browser            | Compatibility             | Medium   | OTP login works correctly on iPhone Safari                  |
++-------------+-------------------------------------------------------------+---------------------------+----------+-------------------------------------------------------------+
+
+
+Test Lead Review: Coverage includes 10-digit mobile validation, 4-digit OTP validation, correct/incorrect OTP, 5-minute expiry, security controls, and mobile compatibility.

@@ -1,0 +1,78 @@
+Scenario 02
+📎 File Upload
+
+Prompt : "Generate test cases for file upload."
+O/P
+
+| TCID | Test Scenario                               | Type                  | Priority | Expected Result                                                  |
+| ---- | ------------------------------------------- | --------------------- | -------- | ---------------------------------------------------------------- |
+| TC01 | Upload valid file format                    | Functional / Positive | High     | File uploads successfully                                        |
+| TC02 | Upload unsupported file format              | Functional / Negative | High     | System shows “file type not allowed”                             |
+| TC03 | Upload file within max size limit           | Functional / Positive | High     | File uploads successfully                                        |
+| TC04 | Upload file exceeding max size              | Functional / Negative | High     | System rejects file with size error                              |
+| TC05 | Upload multiple files if allowed            | Functional / Positive | Medium   | All selected files upload successfully                           |
+| TC06 | Upload duplicate file                       | Functional / Negative | Medium   | System handles duplicate as per rule: replace, rename, or reject |
+| TC07 | Upload file with special characters in name | Functional / Negative | Medium   | File uploads or validation message appears as per rule           |
+| TC08 | Upload zero-byte/empty file                 | Functional / Negative | High     | System rejects empty file                                        |
+| TC09 | Cancel upload midway                        | Functional / Negative | Medium   | Upload stops and no incomplete file is saved                     |
+| TC10 | Upload file on slow network                 | Non-functional        | High     | Upload completes or timeout message appears gracefully           |
+| TC11 | Upload large valid file within limit        | Performance           | High     | Upload completes within acceptable time                          |
+| TC12 | Upload virus/malware infected file          | Security / Negative   | Critical | File is blocked/quarantined                                      |
+| TC13 | Upload file without login/session expired   | Security / Negative   | High     | System redirects to login or shows authorization error           |
+| TC14 | Upload file and verify preview/download     | Functional / Positive | High     | Uploaded file can be viewed/downloaded correctly                 |
+| TC15 | Upload same file from mobile browser        | Compatibility         | Medium   | Upload works properly on mobile device                           |
+
+
+
+New Prompt
+Context
+Act as a senior QA Engineer and write testcases for validating file type for User Profile Picture Upload for Passport
+
+Instructions
+[STRICT] : only png, gif and jpeg file types are allowed
+[STRICT]: file size should be not move than 150KB
+[MANDATORY] : Foto should have white background
+[MANDATORTY] : eyes should open and picture should be clear
+[MANDATORTY]: Include positive, negative, security, compatibility
+
+Example
+ID|Decsription|TYpe|Priority|Expected Result
+
+Persona : Act as test lead to review the testcases
+
+Tone: 
+Professional Tone with Clarity
+
+Output : Downloadable Excel
+
+ID	Decsription	TYpe	Priority	Expected Result
+TC_PP_001	Upload valid PNG photo with white background, eyes open, clear picture and size ≤150KB	Positive / Functional	High	Photo uploads successfully
+TC_PP_002	Upload valid JPEG photo with white background, eyes open, clear picture and size ≤150KB	Positive / Functional	High	Photo uploads successfully
+TC_PP_003	Upload valid GIF photo with white background, eyes open, clear picture and size ≤150KB	Positive / Functional	High	Photo uploads successfully
+TC_PP_004	Upload photo with size exactly 150KB	Positive / Boundary	High	Photo uploads successfully
+TC_PP_005	Upload photo with size 151KB	Negative / Boundary	High	Upload is rejected with file size validation message
+TC_PP_006	Upload PDF file as profile picture	Negative / File Type	Critical	Upload is rejected with “Only PNG, GIF and JPEG files are allowed” message
+TC_PP_007	Upload DOC/DOCX file as profile picture	Negative / File Type	Critical	Upload is rejected with file type validation message
+TC_PP_008	Upload BMP image file	Negative / File Type	High	Upload is rejected with file type validation message
+TC_PP_009	Upload WEBP image file	Negative / File Type	High	Upload is rejected with file type validation message
+TC_PP_010	Upload TIFF image file	Negative / File Type	High	Upload is rejected with file type validation message
+TC_PP_011	Upload file without extension	Negative / File Type	High	Upload is rejected with invalid file type message
+TC_PP_012	Upload corrupted PNG/JPEG/GIF file	Negative / Validation	High	Upload is rejected with invalid image message
+TC_PP_013	Upload valid file type and size but non-white background	Negative / Business Rule	Critical	Upload is rejected with “White background required” message
+TC_PP_014	Upload valid file type and size but mixed/colored background	Negative / Business Rule	High	Upload is rejected with background validation message
+TC_PP_015	Upload valid file type and size but eyes are closed	Negative / Business Rule	Critical	Upload is rejected with “Eyes should be open” message
+TC_PP_016	Upload valid file type and size but one eye is partially closed	Negative / Business Rule	High	Upload is rejected with eye validation message
+TC_PP_017	Upload valid file type and size but picture is blurred	Negative / Quality	Critical	Upload is rejected with “Picture should be clear” message
+TC_PP_018	Upload low-resolution photo where face is unclear	Negative / Quality	High	Upload is rejected with image clarity validation message
+TC_PP_019	Upload photo where face is partially cropped	Negative / Quality	High	Upload is rejected with photo quality validation message
+TC_PP_020	Upload photo with sunglasses covering eyes	Negative / Quality	High	Upload is rejected with eye visibility validation message
+TC_PP_021	Upload .exe file renamed as .jpg	Security	Critical	Upload is rejected after MIME/content validation
+TC_PP_022	Upload PDF file renamed as .jpeg	Security	Critical	Upload is rejected after actual file signature validation
+TC_PP_023	Upload image containing embedded script or malicious metadata	Security	Critical	File is rejected or sanitized; no script execution occurs
+TC_PP_024	Upload unsupported large file repeatedly	Security / Performance	High	System handles request safely without crash or bypass
+TC_PP_025	Upload valid photo with uppercase extension .PNG/.JPEG/.GIF	Compatibility	Medium	Upload is accepted if all rules are satisfied
+TC_PP_026	Upload valid photo from Chrome browser	Compatibility	Medium	Photo uploads successfully
+TC_PP_027	Upload valid photo from Edge browser	Compatibility	Medium	Photo uploads successfully
+TC_PP_028	Upload valid photo from Safari browser	Compatibility	Medium	Photo uploads successfully
+TC_PP_029	Upload valid photo from Android mobile browser	Compatibility	Medium	Photo uploads successfully and preview displays correctly
+TC_PP_030	Upload valid photo from iPhone Safari browser	Compatibility	Medium	Photo uploads successfully and preview displays correctly

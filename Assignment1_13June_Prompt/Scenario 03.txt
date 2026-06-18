@@ -1,0 +1,84 @@
+Shopping Cart
+
+Prompt : "Test the cart functionality."
+O/P
+ID	Description	Type	Priority	Expected Result
+TC_CART_001	Add a single product to cart	Positive / Functional	High	Product is added successfully
+TC_CART_002	Add multiple different products to cart	Positive / Functional	High	All products appear correctly in cart
+TC_CART_003	Increase product quantity in cart	Positive / Functional	High	Quantity and total price update correctly
+TC_CART_004	Decrease product quantity in cart	Positive / Functional	High	Quantity and total price update correctly
+TC_CART_005	Remove product from cart	Positive / Functional	High	Product is removed and cart total updates
+TC_CART_006	Add out-of-stock product to cart	Negative / Functional	Critical	System prevents adding item and shows stock message
+TC_CART_007	Add quantity more than available stock	Negative / Validation	Critical	System restricts quantity and shows validation message
+TC_CART_008	Add same product twice	Functional	High	Quantity increases instead of duplicate incorrect entry
+TC_CART_009	Verify cart subtotal, tax, shipping, and grand total	Functional	Critical	All amounts are calculated correctly
+TC_CART_010	Apply valid coupon code in cart	Positive / Functional	High	Discount is applied correctly
+TC_CART_011	Apply invalid/expired coupon code	Negative / Validation	High	Coupon is rejected with proper message
+TC_CART_012	Refresh page after adding items	Functional	Medium	Cart items remain saved
+TC_CART_013	Logout and login again after adding items	Functional	High	Cart items are retained for logged-in user
+TC_CART_014	Add product to cart as guest user	Functional	Medium	Guest cart is created successfully
+
+
+
+New Prompt
+
+Context
+
+Act as a senior QA Engineer and write testcases for validating a shopping cart 
+[STRICT] : Max 10 items are allowed
+[STRICT] : Minimum 1 items should be there
+[STRICT]: Item should be deliverable in selected location
+[STRICT]: Valid payment details should be added
+[MANDATORTY]: Include positive, negative, security, compatibility
+[MANDATORY] :  Generate test cases in tabular format with header- ID|Decsription|TYpe|Priority|Expected Result
+
+
+Persona : Act as test lead to review the testcases
+
+Tone: 
+Professional Tone with Clarity
+
+Output : Table with borders
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| ID          | Decsription                                                  | TYpe                      | Priority | Expected Result                                              |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_001 | Add 1 deliverable item to cart                               | Positive / Functional     | High     | Item is added successfully and cart count shows 1 item       |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_002 | Add 10 deliverable items to cart                             | Positive / Boundary       | High     | Cart accepts 10 items successfully                           |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_003 | Try to add 11th item to cart                                 | Negative / Boundary       | Critical | System blocks 11th item with max 10 items validation message |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_004 | Proceed to checkout with minimum 1 valid item                | Positive / Functional     | High     | User is allowed to proceed to checkout                       |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_005 | Try to proceed to checkout with empty cart                   | Negative / Boundary       | Critical | Checkout is blocked with minimum 1 item required message     |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_006 | Add item deliverable to selected location                    | Positive / Functional     | High     | Item is added and marked deliverable                         |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_007 | Add item not deliverable to selected location                | Negative / Validation     | Critical | Item is not added or checkout is blocked                     |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_008 | Change location after adding items                           | Negative / Functional     | High     | Cart revalidates items for new location                      |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_009 | Add valid payment details                                    | Positive / Payment        | High     | Payment details are accepted                                 |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_010 | Try checkout without payment details                         | Negative / Payment        | Critical | Checkout is blocked with payment required message            |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_011 | Enter invalid payment details                                | Negative / Payment        | Critical | Payment validation error is displayed                        |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_012 | Manipulate cart quantity above 10 using API                  | Security                  | Critical | Server rejects request and limit remains enforced            |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_013 | Manipulate item price using browser/API                      | Security                  | Critical | Server validates actual price and rejects tampered value     |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_014 | Bypass payment validation using modified request             | Security                  | Critical | Order is not created without valid payment details           |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_015 | Validate cart in Chrome browser                              | Compatibility             | Medium   | Cart works correctly in Chrome                               |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_016 | Validate cart in Edge browser                                | Compatibility             | Medium   | Cart works correctly in Edge                                 |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_017 | Validate cart in Android mobile browser                      | Compatibility             | Medium   | Cart works correctly on Android mobile                       |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+| TC_CART_018 | Validate cart in iPhone Safari browser                       | Compatibility             | Medium   | Cart works correctly on iPhone Safari                        |
++-------------+--------------------------------------------------------------+---------------------------+----------+--------------------------------------------------------------+
+
+
+
+Test Lead Review: Coverage includes positive, negative, boundary, security, and compatibility scenarios. All strict rules are covered.
